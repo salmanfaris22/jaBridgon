@@ -111,40 +111,82 @@
 
 
 
- const  p1 = new Promise((res,rej)=>{
-  setTimeout((da)=>{
-    res("tsak one compleated")
-  },500)
-
-}) 
-
+// const p1 = new Promise((res,rej)=>{
+//   setTimeout((da)=>{
+//     res("tsak one compleated")
+//   },500)
+// }) 
 
 
-async function abc(){
-  
-const p3 = new Promise((res,rej)=>{
-  setTimeout(()=>{
-    res("task two compleated")
-  },1000)
+
+// const p2 = new Promise((res,rej)=>{
+//   setTimeout(()=>{
+//     res("task two compleated")
+// },1000)
+// })
 
 
-})
+
+// const p3 = new Promise((res,rej)=>{
+//   setTimeout(()=>{
+//     rej("task three compleated")
+//   },1000)
+
+
+// })
+
+
+// Promise.race([p1,p2,p3])
+// .then(res=> console.log(res))
+// .catch(err=> console.log("error"))
+
+
+
+// fetch("https://jsonplaceholder.typicode.com/users")
+// .then((data)=>{
+//  if(data.ok){
+//   console.log("done");
+//  }else{
+//   console.log("not done");
+//  }
+//   data.json()})
+// .then((data)=> console.log(data))
+// .catch((err)=>{
+//   console.log("err");
+// })
+
+
+const API_URL ="https://pokeapi.co/api/v2/pokemon?limit=151"
+
+const items = document.getElementById("list-item")
+
+function ubdate(data){
+
+data.results.forEach(e => {
+ 
+  const li = document.createElement('li')
+  li.innerHTML = `
+ <img src="${e.url}" >
+ <h1>${e.name}</h1>
+  ` 
+  console.log(li);
+  items.appendChild(li)
+});
+
 
 }
 
-
-const p3 = new Promise((res,rej)=>{
-  setTimeout(()=>{
-    res("task three compleated")
-  },5000)
-
-
-})
-
+abc()
+async function abc(){
+  const respose =await  fetch(API_URL)
+  const datas=await respose.json()
+  ubdate(datas)
+  console.log(datas);
+}
 
 
-
-
-
+// fetch(API_URL)
+//     .then(res=>res.json())
+//     .then(data=>ubdate(data))
 
 
